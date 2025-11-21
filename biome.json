@@ -1,0 +1,109 @@
+{
+	"$schema": "https://biomejs.dev/schemas/2.3.7/schema.json",
+	"vcs": {
+		"enabled": true,
+		"clientKind": "git",
+		"useIgnoreFile": true
+	},
+	"files": {
+		"ignoreUnknown": false
+	},
+	"formatter": {
+		"enabled": true,
+		"indentStyle": "tab",
+		"indentWidth": 4,
+		"lineWidth": 100
+	},
+	"linter": {
+		"enabled": true,
+		"rules": {
+			"recommended": true,
+			"a11y": {
+				"recommended": true,
+				"noAccessKey": "error",
+				"noAriaUnsupportedElements": "error",
+				"noAutofocus": "warn",
+				"useAltText": "error",
+				"useAriaPropsForRole": "error",
+				"useValidAriaProps": "error"
+			},
+			"complexity": {
+				"recommended": true,
+				"noExtraBooleanCast": "error",
+				"noUselessConstructor": "error",
+				"useFlatMap": "error"
+			},
+			"correctness": {
+				"recommended": true,
+				"noUnusedVariables": {
+					"level": "warn",
+					"options": {
+						"ignoreRestSiblings": true
+					}
+				},
+				"useExhaustiveDependencies": "warn"
+			},
+			"performance": {
+				"recommended": true
+			},
+			"security": {
+				"recommended": true
+			},
+			"style": {
+				"recommended": true,
+				"noNegationElse": "warn",
+				"useBlockStatements": "warn",
+				"useCollapsedElseIf": "warn",
+				"useConsistentArrayType": "error",
+				"useForOf": "warn",
+				"useSingleVarDeclarator": "warn"
+			},
+			"suspicious": {
+				"recommended": true,
+				"noDoubleEquals": "error",
+				"noExplicitAny": "warn"
+			}
+		}
+	},
+	"overrides": [
+		{
+			"includes": ["**/*.svelte"],
+			"linter": {
+				"rules": {
+					"correctness": {
+						"noUnusedImports": "off",
+						"noUnusedVariables": "off"
+					},
+					"style": {
+						"useConst": "off"
+					}
+				}
+			}
+		}
+	],
+	"javascript": {
+		"formatter": {
+			"quoteStyle": "double",
+			"semicolons": "always",
+			"trailingCommas": "all",
+			"arrowParentheses": "always"
+		}
+	},
+	"json": {
+		"formatter": {
+			"enabled": true,
+			"indentStyle": "tab"
+		}
+	},
+	"css": {
+		"parser": {
+			"cssModules": false,
+			"allowWrongLineComments": true,
+			"tailwindDirectives": true
+		},
+		"formatter": {
+			"enabled": true,
+			"indentStyle": "tab"
+		}
+	}
+}
