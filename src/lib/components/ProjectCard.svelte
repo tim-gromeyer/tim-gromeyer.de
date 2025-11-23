@@ -56,6 +56,7 @@ export let badge: string | undefined = undefined;
     </CardContent>
     <CardFooter class="flex gap-2 pt-4">
         {#if link && link !== "#"}
+            <!-- Regular link exists: show "Besuchen" button -->
             <Button
                 variant="default"
                 size="sm"
@@ -67,22 +68,37 @@ export let badge: string | undefined = undefined;
                 <ExternalLink class="mr-2 h-4 w-4" />
                 Besuchen
             </Button>
-        {:else}
-            <Button variant="secondary" size="sm" class="flex-1" disabled>
-                Demnächst
-            </Button>
-        {/if}
 
-        {#if github}
+            <!-- Show small GitHub icon button if github link also exists -->
+            {#if github}
+                <Button
+                    variant="outline"
+                    size="icon"
+                    href={github}
+                    target="_blank"
+                    rel="noreferrer"
+                >
+                    <Github class="h-4 w-4" />
+                    <span class="sr-only">GitHub</span>
+                </Button>
+            {/if}
+        {:else if github}
+            <!-- No regular link, but GitHub exists: show full-width GitHub button -->
             <Button
-                variant="outline"
-                size="icon"
+                variant="default"
+                size="sm"
+                class="flex-1"
                 href={github}
                 target="_blank"
                 rel="noreferrer"
             >
-                <Github class="h-4 w-4" />
-                <span class="sr-only">GitHub</span>
+                <Github class="mr-2 h-4 w-4" />
+                GitHub
+            </Button>
+        {:else}
+            <!-- No links at all: show "Demnächst" (Coming Soon) -->
+            <Button variant="secondary" size="sm" class="flex-1" disabled>
+                Demnächst
             </Button>
         {/if}
     </CardFooter>

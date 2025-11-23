@@ -5,26 +5,26 @@ import { Card, CardContent, CardHeader, CardTitle } from "$lib/components/ui/car
 
 const techStack = {
 	frontend: [
+		"SvelteKit",
 		"React",
 		"Next.js",
-		"Vue",
-		"Angular",
-		"Flutter",
-		"WPF",
-		"Qt/QtQuick",
-		"Tailwind CSS",
+		"Vue 3",
 		"TypeScript",
+		"Tailwind CSS",
+		"Shadcn UI",
+		"Qt/QML",
+		"Flutter",
 	],
-	backend: ["Python", "Go", "C++", "C#", ".NET", "TypeScript", "Node.js", "EF Core"],
+	backend: ["Python", "Go", "C++17", "C#", ".NET Core", "Node.js", "PostgreSQL", "RESTful APIs"],
 	data: [
 		"PyTorch",
+		"LSTM Networks",
 		"NumPy",
 		"Pandas",
 		"TA-Lib",
-		"SQL",
 		"Machine Learning",
-		"Alpha Vantage API",
-		"RESTful APIs",
+		"Algorithmic Trading",
+		"Data Analysis",
 	],
 };
 </script>
@@ -42,7 +42,7 @@ const techStack = {
             Tech Stack
         </h2>
         <p class="text-lg text-muted-foreground">
-            Technologien und Tools, die ich regelmäßig verwende.
+            Moderne Technologien für skalierbare und performante Lösungen.
         </p>
     </div>
 
