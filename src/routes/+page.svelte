@@ -13,6 +13,14 @@ import ContactForm from "$lib/components/ContactForm.svelte";
 import Hero from "$lib/components/Hero.svelte";
 import ProjectCard from "$lib/components/ProjectCard.svelte";
 import TechStack from "$lib/components/TechStack.svelte";
+import { getPageMeta } from "$lib/config/seo";
+
+const pageMeta = getPageMeta({
+	title: "Tim Gromeyer - Full Stack Developer",
+	description:
+		"Portfolio von Tim Gromeyer - Full Stack Entwickler spezialisiert auf moderne Webtechnologien, SvelteKit, TypeScript und Web-Anwendungen.",
+	path: "/",
+});
 
 const projects = [
 	{
@@ -94,11 +102,19 @@ const projects = [
 </script>
 
 <svelte:head>
-	<title>Tim Gromeyer - Full Stack Developer</title>
-	<meta
-		name="description"
-		content="Portfolio von Tim Gromeyer - Full Stack Entwickler spezialisiert auf moderne Webtechnologien."
-	/>
+	<title>{pageMeta.title}</title>
+	<meta name="description" content={pageMeta.description} />
+
+	<!-- Open Graph Meta Tags -->
+	<meta property="og:title" content={pageMeta.title} />
+	<meta property="og:description" content={pageMeta.description} />
+	<meta property="og:url" content={pageMeta.url} />
+	<meta property="og:image" content={pageMeta.image} />
+
+	<!-- Twitter Card Meta Tags -->
+	<meta name="twitter:title" content={pageMeta.title} />
+	<meta name="twitter:description" content={pageMeta.description} />
+	<meta name="twitter:image" content={pageMeta.image} />
 </svelte:head>
 
 <Hero />
