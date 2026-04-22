@@ -55,7 +55,7 @@ const projects = [
 		title: "Event-Galerie",
 		description:
 			"Online-Fotogalerie für Hochzeiten & Events. Gäste laden Fotos hoch, genießen Live-Diashows – DSGVO-konform und einfach per QR-Code.",
-		tech: ["Next.js", "React", "PostgreSQL", "Image CDN", "WebSocket"],
+		tech: ["SvelteKit", "TypeScript", "PostgreSQL", "Image CDN", "Shadcn UI"],
 		link: "https://event-galerie.tim-gromeyer.de/",
 		icon: Camera,
 		gradient: "from-cyan-600 to-teal-600",

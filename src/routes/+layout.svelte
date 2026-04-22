@@ -1,12 +1,16 @@
 <script lang="ts">
-import "../app.css";
-import { ModeWatcher } from "mode-watcher";
-import Footer from "$lib/components/Footer.svelte";
-import Header from "$lib/components/Header.svelte";
-import { siteConfig, getPersonSchema, getWebSiteSchema } from "$lib/config/seo";
+	import "../app.css";
+	import { ModeWatcher } from "mode-watcher";
+	import Footer from "$lib/components/Footer.svelte";
+	import Header from "$lib/components/Header.svelte";
+	import {
+		siteConfig,
+		getPersonSchema,
+		getWebSiteSchema,
+	} from "$lib/config/seo";
 
-const personSchema = getPersonSchema();
-const websiteSchema = getWebSiteSchema();
+	const personSchema = getPersonSchema();
+	const websiteSchema = getWebSiteSchema();
 </script>
 
 <svelte:head>
@@ -33,6 +37,13 @@ const websiteSchema = getWebSiteSchema();
 	<!-- JSON-LD Structured Data -->
 	{@html `<script type="application/ld+json">${JSON.stringify(personSchema)}</script>`}
 	{@html `<script type="application/ld+json">${JSON.stringify(websiteSchema)}</script>`}
+
+	<!-- Cloudflare Turnstile -->
+	<script
+		src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+		async
+		defer
+	></script>
 </svelte:head>
 
 <ModeWatcher />

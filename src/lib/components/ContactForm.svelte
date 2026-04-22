@@ -1,20 +1,26 @@
 <script lang="ts">
-import { CircleCheck, CircleX, Send } from "lucide-svelte";
-import { enhance } from "$app/forms";
-import * as AlertDialog from "$lib/components/ui/alert-dialog";
-import { Button } from "$lib/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "$lib/components/ui/card";
-import { Input } from "$lib/components/ui/input";
-import { Label } from "$lib/components/ui/label";
-import { Textarea } from "$lib/components/ui/textarea";
-import type { ActionResult } from "@sveltejs/kit";
+	import { CircleCheck, CircleX, Send } from "lucide-svelte";
+	import { enhance } from "$app/forms";
+	import * as AlertDialog from "$lib/components/ui/alert-dialog";
+	import { Button } from "$lib/components/ui/button";
+	import {
+		Card,
+		CardContent,
+		CardDescription,
+		CardHeader,
+		CardTitle,
+	} from "$lib/components/ui/card";
+	import { Input } from "$lib/components/ui/input";
+	import { Label } from "$lib/components/ui/label";
+	import { Textarea } from "$lib/components/ui/textarea";
+	import type { ActionResult } from "@sveltejs/kit";
 
-let form: HTMLFormElement;
-let submitting = false;
-let dialogOpen = false;
-let dialogTitle = "";
-let dialogDescription = "";
-let result: ActionResult | undefined;
+	let form: HTMLFormElement;
+	let submitting = false;
+	let dialogOpen = false;
+	let dialogTitle = "";
+	let dialogDescription = "";
+	let result: ActionResult | undefined;
 </script>
 
 <section id="contact" class="w-full bg-muted/30 py-24 md:py-32">
@@ -22,14 +28,14 @@ let result: ActionResult | undefined;
 		<div class="mx-auto max-w-[600px]">
 			<div class="relative rounded-3xl border bg-muted/50 p-8 md:p-12">
 				<div
-					class="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]"
+					class="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-size-[14px_24px]"
 				></div>
 				<Card class="bg-background/60 backdrop-blur-sm">
 					<CardHeader>
 						<CardTitle>Kontakt aufnehmen</CardTitle>
 						<CardDescription>
-							Haben Sie eine Frage oder möchten Sie zusammenarbeiten? Schreiben Sie mir eine
-							Nachricht.
+							Haben Sie eine Frage oder möchten Sie
+							zusammenarbeiten? Schreiben Sie mir eine Nachricht.
 						</CardDescription>
 					</CardHeader>
 					<CardContent>
@@ -42,15 +48,22 @@ let result: ActionResult | undefined;
 								submitting = true;
 								return async ({ result: r }) => {
 									result = r;
-									if (result?.type === "success" && result.data?.success) {
+									if (
+										result?.type === "success" &&
+										result.data?.success
+									) {
 										dialogTitle = "Nachricht gesendet!";
-										dialogDescription = "Vielen Dank für Ihre Nachricht. Ich werde mich so schnell wie möglich bei Ihnen melden.";
-									} else if (result?.type === 'failure') {
+										dialogDescription =
+											"Vielen Dank für Ihre Nachricht. Ich werde mich so schnell wie möglich bei Ihnen melden.";
+									} else if (result?.type === "failure") {
 										dialogTitle = "Fehler";
-										dialogDescription = result.data?.error || "Leider konnte die Nachricht nicht gesendet werden. Bitte versuchen Sie es später erneut.";
+										dialogDescription =
+											result.data?.error ||
+											"Leider konnte die Nachricht nicht gesendet werden. Bitte versuchen Sie es später erneut.";
 									} else {
 										dialogTitle = "Unerwarteter Fehler";
-										dialogDescription = "Ein unerwarteter Fehler ist aufgetreten.";
+										dialogDescription =
+											"Ein unerwarteter Fehler ist aufgetreten.";
 									}
 
 									dialogOpen = true;
@@ -60,7 +73,13 @@ let result: ActionResult | undefined;
 						>
 							<div class="grid gap-2">
 								<Label for="name">Name</Label>
-								<Input id="name" name="name" placeholder="Ihr Name" required disabled={submitting} />
+								<Input
+									id="name"
+									name="name"
+									placeholder="Ihr Name"
+									required
+									disabled={submitting}
+								/>
 							</div>
 							<div class="grid gap-2">
 								<Label for="email">Email</Label>
@@ -84,9 +103,31 @@ let result: ActionResult | undefined;
 									disabled={submitting}
 								/>
 							</div>
-							<Button type="submit" class="w-full" disabled={submitting}>
+
+							<div
+								class="cf-turnstile"
+								data-sitekey="0x4AAAAAAC9a1nh7vFCIws8O"
+								data-theme="dark"
+							></div>
+
+							<p class="text-xs text-muted-foreground">
+								Mit dem Absenden des Formulars erklären Sie sich
+								mit der Verarbeitung Ihrer Daten gemäß unserer
+								<a
+									href="/legal/privacy"
+									class="underline underline-offset-4 hover:text-foreground"
+									>Datenschutzerklärung</a
+								> einverstanden.
+							</p>
+							<Button
+								type="submit"
+								class="w-full"
+								disabled={submitting}
+							>
 								<Send class="mr-2 h-4 w-4" />
-								{submitting ? 'Wird gesendet...' : 'Nachricht senden'}
+								{submitting
+									? "Wird gesendet..."
+									: "Nachricht senden"}
 							</Button>
 						</form>
 					</CardContent>
@@ -99,7 +140,7 @@ let result: ActionResult | undefined;
 <AlertDialog.Root
 	bind:open={dialogOpen}
 	onOpenChange={(open) => {
-		if (!open && result?.type === 'success' && result.data?.success) {
+		if (!open && result?.type === "success" && result.data?.success) {
 			form.reset();
 		}
 	}}
@@ -107,7 +148,7 @@ let result: ActionResult | undefined;
 	<AlertDialog.Content>
 		<AlertDialog.Header>
 			<AlertDialog.Title class="flex items-center">
-				{#if result?.type === 'success' && result.data?.success}
+				{#if result?.type === "success" && result.data?.success}
 					<CircleCheck class="mr-2 h-6 w-6 text-green-500" />
 				{:else}
 					<CircleX class="mr-2 h-6 w-6 text-red-500" />
